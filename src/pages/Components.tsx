@@ -14,6 +14,9 @@ export const Components = () => {
           leftIcon="octicon:person-16"
         />
 
+        <Input type="time" label="Time" leftIcon="subway:time-3" />
+        <Input type="date" label="Date" leftIcon="fontisto:date" />
+
         <Button variant="primary" name="Create Account" isLoading />
 
         <TextArea label={"Suggestions"} />
