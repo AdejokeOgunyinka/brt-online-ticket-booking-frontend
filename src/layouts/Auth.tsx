@@ -8,7 +8,7 @@ export const AuthLayout: React.FC<IAuthLayout> = ({
   children,
 }) => {
   return (
-    <div className="w-full min-h-[100vh] lg:h-[100vh] border-[5px] border-blackText flex p-3 lg:p-10 gap-10">
+    <div className="w-full min-h-[100vh] lg:h-[100vh] flex p-3 lg:p-10 gap-10">
       <div className="lg:basis-1/2 hidden lg:inline-flex">
         <img
           src={AuthImg}

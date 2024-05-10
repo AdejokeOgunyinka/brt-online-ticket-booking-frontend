@@ -4,7 +4,7 @@ import { Button, DashboardMenu, Input, TextArea } from "../components";
 export const Components = () => {
   const [activeMenu, setActiveMenu] = useState("schedules");
   return (
-    <div className="w-full h-[100vh] text-center flex flex-col justify-center items-center">
+    <div className="w-full min-h-[100vh] text-center flex flex-col justify-center items-center py-10">
       <h1 className="text-4xl">My Cowry Components</h1>
       <div className="w-[90%] grid gap-10">
         <Input
@@ -13,6 +13,9 @@ export const Components = () => {
           rightIcon="uis:padlock"
           leftIcon="octicon:person-16"
         />
+
+        <Input type="time" label="Time" leftIcon="subway:time-3" />
+        <Input type="date" label="Date" leftIcon="fontisto:date" />
 
         <Button variant="primary" name="Create Account" isLoading />
 
