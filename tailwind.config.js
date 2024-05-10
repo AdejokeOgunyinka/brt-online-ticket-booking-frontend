@@ -17,7 +17,7 @@ export default {
         redditSans: ['"Reddit Sans"'],
       },
       colors: {
-        primary: "#1da1ff",
+        primary: "#001d54",
         primaryBorder: "#d9ecfe",
         buttonBorder: "#f0f0f0",
         greyBg: "#f4f5f9",

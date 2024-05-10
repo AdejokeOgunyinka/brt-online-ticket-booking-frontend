@@ -27,3 +27,9 @@ interface IDashboardMenu {
   isActive: boolean;
   onClick: () => void;
 }
+
+interface IAuthLayout {
+  header: string;
+  description: string;
+  children: ReactElement;
+}
