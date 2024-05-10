@@ -17,7 +17,7 @@ export const Input: React.FC<IInput> = ({
     <div className="grid gap-1 w-full font-poppins">
       <label className="font-medium text-lg text-start">{label}</label>
       <div
-        className={`border ${isInFocus ? "ring-1 ring-primaryBorder" : "border-buttonBorder"} p-1 rounded-xl`}
+        className={`border ${isInFocus ? "ring-1 ring-primaryBorder " : "border-buttonBorder "} p-1 rounded-xl`}
       >
         <div
           className={`${isInFocus ? "border ring-2 ring-primary" : "border-none"}  rounded-lg flex justify-between items-center px-2 gap-2`}

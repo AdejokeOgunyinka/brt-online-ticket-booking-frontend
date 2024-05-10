@@ -9,7 +9,7 @@ export const DashboardMenu: React.FC<IDashboardMenu> = ({
 }) => {
   return (
     <button
-      className={`flex items-center gap-2 w-full font-poppins px-4 h-14 rounded-md ${isActive ? "bg-primary" : "bg-none"}`}
+      className={`flex items-center gap-2 w-full font-poppins px-4 h-14 rounded-md ${isActive ? "bg-primary " : "bg-none "}`}
       onClick={onClick}
     >
       <Icon

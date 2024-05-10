@@ -4,8 +4,8 @@ import { buttonLoaderVariants } from "../types/variants";
 import { ThreeDots } from "react-loader-spinner";
 
 const buttonVariants: Record<any, string> = {
-  primary: "border-none bg-primary text-white",
-  secondary: "border border-buttonBorder bg-white text-blackText",
+  primary: "border-none bg-primary text-white ",
+  secondary: "border border-buttonBorder bg-white text-blackText ",
 };
 
 export const Button: React.FC<IButton> = ({
