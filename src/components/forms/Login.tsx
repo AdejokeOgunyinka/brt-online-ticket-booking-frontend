@@ -1,5 +1,5 @@
-import { Button } from "../Button";
-import { Input } from "../Input";
+import { Button } from "../CowryButton";
+import { Input } from "../CowryInput";
 
 export const Login = () => {
   return (
