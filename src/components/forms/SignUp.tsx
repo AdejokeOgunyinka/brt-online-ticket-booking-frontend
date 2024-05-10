@@ -23,6 +23,12 @@ export const SignUp = () => {
         name={"Sign up with Facebook"}
         icon="logos:facebook"
       />
+      <span className="font-teachers">
+        Already have an account?{"    "}
+        <a href="/auth/login" className="underline">
+          Log In
+        </a>
+      </span>
     </div>
   );
 };
