@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { DashboardMenu } from "../components";
+import { DashboardMenuBar } from "../components";
 import { IDashboardLayout } from "../types";
-import CowryLogo from "../assets/cowry.jpeg";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 export const DashboardLayout: React.FC<IDashboardLayout> = ({
@@ -9,46 +8,49 @@ export const DashboardLayout: React.FC<IDashboardLayout> = ({
   header,
 }) => {
   const [activeMenu, setActiveMenu] = useState("dashboard");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <div className="w-full min-h-[100vh] flex font-poppins">
-      <div className="hidden md:flex h-[100vh] w-[250px] lg:w-[300px] flex-col justify-between px-4 bg-white py-10">
-        <div className="flex flex-col gap-7">
-          <div className="flex w-full justify-center">
-            <img src={CowryLogo} alt="logo" className="w-20 h-20" />
-          </div>
-          <div className="flex flex-col gap-3">
-            <DashboardMenu
-              name={"Dashboard"}
-              icon={"tabler:layout-dashboard-filled"}
-              isActive={activeMenu === "dashboard"}
-              onClick={() => setActiveMenu("dashboard")}
-            />
-
-            <DashboardMenu
-              name={"Bookings"}
-              icon={"streamline:ticket-1-solid"}
-              isActive={activeMenu === "bookings"}
-              onClick={() => setActiveMenu("bookings")}
-            />
-
-            <DashboardMenu
-              name={"Profile"}
-              icon={"streamline:user-profile-focus-solid"}
-              isActive={activeMenu === "profile"}
-              onClick={() => setActiveMenu("profile")}
-            />
-          </div>
-        </div>
-
-        <div className="flex justify-center items-center gap-2 font-semibold text-red-600  rounded-lg py-3 cursor-pointer">
-          <Icon icon="material-symbols:logout-rounded" className="w-6 h-6" />
-          <p>Log out</p>
-        </div>
+      <div className="hidden md:flex h-[100vh]">
+        <DashboardMenuBar
+          activeMenu={activeMenu}
+          setActiveMenu={setActiveMenu}
+        />
       </div>
-      <div className="min-h-[100vh] w-full md:w-[calc(100%-250px)] bg-greySection p-10">
+      <div className="min-h-[100vh] w-full md:w-[calc(100%-250px)] bg-greySection p-5 lg:p-10 relative">
+        {isMobileMenuOpen ? (
+          <div className=" absolute top-0 bottom-0 right-0 left-0 w-full h-[100vh] bg-greyBorder"></div>
+        ) : (
+          <></>
+        )}
         <h2 className="text-3xl font-redditSans font-medium">{header}</h2>
-        <div>{children}</div>
+        <div>
+          <Icon
+            className="absolute right-2 top-2  lg:hidden cursor-pointer"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            icon={"mingcute:menu-fill"}
+            fontSize={35}
+          />
+          {isMobileMenuOpen ? (
+            <div className="absolute right-0 top-0 lg:hidden">
+              <Icon
+                className="absolute right-2 top-2  lg:hidden cursor-pointer"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                icon={"line-md:menu-to-close-transition"}
+                fontSize={30}
+              />
+
+              <DashboardMenuBar
+                activeMenu={activeMenu}
+                setActiveMenu={setActiveMenu}
+              />
+            </div>
+          ) : (
+            <></>
+          )}
+          <div>{children}</div>
+        </div>
       </div>
     </div>
   );
