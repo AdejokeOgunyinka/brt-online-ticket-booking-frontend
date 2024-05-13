@@ -20,7 +20,7 @@ export const DashboardLayout: React.FC<IDashboardLayout> = ({
       </div>
       <div className="min-h-[100vh] w-full md:w-[calc(100%-250px)] bg-greySection p-5 lg:p-10 relative">
         {isMobileMenuOpen ? (
-          <div className=" absolute top-0 bottom-0 right-0 left-0 w-full h-[100vh] bg-greyBorder"></div>
+          <div className=" absolute top-0 bottom-0 right-0 left-0 w-full h-[100vh] bg-menuBg"></div>
         ) : (
           <></>
         )}
