@@ -35,3 +35,13 @@ interface IAuthLayout {
   description: string;
   children: ReactElement;
 }
+
+interface IDashboardLayout {
+  header: string;
+  children: ReactElement;
+}
+
+interface IDashboardMenuBar {
+  setActiveMenu: (value: React.SetStateAction<string>) => void;
+  activeMenu: string;
+}

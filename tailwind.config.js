@@ -25,6 +25,8 @@ export default {
         greyHeader: "#6d6d70",
         greyText: "#adadaf",
         blackText: "#1e1e1e",
+        greySection: "#f6f9ff",
+        menuBg: "rgba(0, 0, 0, .5)",
       },
       boxShadow: {
         select: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
