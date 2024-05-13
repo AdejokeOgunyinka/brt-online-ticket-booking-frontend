@@ -89,8 +89,12 @@ export const DashboardLayout: React.FC<IDashboardLayout> = ({
           )}
           <div className="w-full min-h-[100vh]">
             <div className="w-full justify-end items-center gap-2 p-5 hidden lg:flex absolute top-0 right-0 left-0 h-[70px]">
-              <img src={UserAvatar} alt="avatar" className="w-6 h-6" />
-              <p className="font-medium text-lg">{user?.username}</p>
+              <img
+                src={UserAvatar}
+                alt="avatar"
+                className="w-8 h-8 rounded-full object-cover border border-blackText"
+              />
+              <p className="font-medium text-md font-heebo">{user?.username}</p>
             </div>
             {isLoading ? <></> : children}
           </div>
