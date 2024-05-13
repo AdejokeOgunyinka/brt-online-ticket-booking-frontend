@@ -1,15 +1,18 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { FormikProvider, useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 import { Button } from "../CowryButton";
 import { Input } from "../CowryInput";
 import { setToken } from "../../helpers";
 import { API } from "../../constant";
-import { toast } from "react-toastify";
-import { FormikProvider, useFormik } from "formik";
+import { DASHBOARD, LOGIN } from "../../routes";
 
 export const SignUp = () => {
   const { setUser } = useAuthContext();
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const onFinish = async (values: any) => {
     setIsLoading(true);
@@ -33,7 +36,7 @@ export const SignUp = () => {
         setUser(data.user);
         toast.success(`Welcome to My Cowry BRT app ${data.user.username}!`);
 
-        // navigate("/profile", { replace: true });
+        navigate(DASHBOARD, { replace: true });
       }
     } catch (error: any) {
       console.error(error);
@@ -135,7 +138,7 @@ export const SignUp = () => {
           />
           <span className="font-teachers">
             Already have an account?{"    "}
-            <a href="/auth/login" className="underline">
+            <a href={LOGIN} className="underline">
               Log In
             </a>
           </span>

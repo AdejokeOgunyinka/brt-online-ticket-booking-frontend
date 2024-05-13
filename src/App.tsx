@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { Components } from "./pages";
-import { AuthLayout } from "./layouts";
+import { Components, Dashboard } from "./pages";
+import { AuthLayout, DashboardLayout } from "./layouts";
 import { SignUp, Login } from "./components";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -35,6 +35,14 @@ const router = createBrowserRouter([
       <AuthLayout header="Log In" description="Welcome back, we've missed you">
         <Login />
       </AuthLayout>
+    ),
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <DashboardLayout header="Dashboard">
+        <Dashboard />
+      </DashboardLayout>
     ),
   },
 ]);

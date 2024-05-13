@@ -14,7 +14,7 @@ export const DashboardMenu: React.FC<IDashboardMenu> = ({
     >
       <Icon
         icon={icon}
-        className={`w-5 h-5 ${isActive ? "text-white" : "text-greyText"}`}
+        className={`w-5 h-5 font-bold ${isActive ? "text-white" : "text-greyText"}`}
       />
       <p
         className={`text-lg font-medium ${isActive ? "text-white" : "text-blackText"}`}

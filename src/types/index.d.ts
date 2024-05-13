@@ -35,3 +35,8 @@ interface IAuthLayout {
   description: string;
   children: ReactElement;
 }
+
+interface IDashboardLayout {
+  header: string;
+  children: ReactElement;
+}

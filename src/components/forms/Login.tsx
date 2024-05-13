@@ -1,15 +1,18 @@
 import { useState } from "react";
+import { FormikProvider, useFormik } from "formik";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 import { Button } from "../CowryButton";
 import { Input } from "../CowryInput";
-import { FormikProvider, useFormik } from "formik";
-import { toast } from "react-toastify";
 import { setToken } from "../../helpers";
 import { API } from "../../constant";
+import { CREATE_ACCOUNT, DASHBOARD } from "../../routes";
 
 export const Login = () => {
   const { setUser } = useAuthContext();
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const onFinish = async (values: any) => {
     setIsLoading(true);
@@ -38,7 +41,7 @@ export const Login = () => {
 
         toast.success(`Welcome back ${data.user.username}!`);
 
-        // navigate("/profile", { replace: true });
+        navigate(DASHBOARD, { replace: true });
       }
     } catch (error: any) {
       console.error(error);
@@ -54,7 +57,6 @@ export const Login = () => {
       password: "",
     },
     onSubmit: (values) => {
-      console.log({ values });
       onFinish(values);
     },
   });
@@ -100,7 +102,7 @@ export const Login = () => {
           />
           <span className="font-teachers">
             Don't yet have an account?{"    "}
-            <a href="/auth/create-account" className="underline">
+            <a href={CREATE_ACCOUNT} className="underline">
               Create Account
             </a>
           </span>
