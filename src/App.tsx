@@ -1,11 +1,13 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { Components } from "./pages";
 import { AuthLayout } from "./layouts";
 import { SignUp, Login } from "./components";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/components",
     element: <Components />,
   },
   {
@@ -13,7 +15,7 @@ const router = createBrowserRouter([
     element: (
       <AuthLayout
         header="Create Your Account"
-        description="Let's get started with your free starter plan in 30 days"
+        description="Hello There, let's get you started on the My Cowry App"
       >
         <SignUp />
       </AuthLayout>
@@ -27,10 +29,34 @@ const router = createBrowserRouter([
       </AuthLayout>
     ),
   },
+  {
+    path: "/",
+    element: (
+      <AuthLayout header="Log In" description="Welcome back, we've missed you">
+        <Login />
+      </AuthLayout>
+    ),
+  },
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+    </>
+  );
 }
 
 export default App;

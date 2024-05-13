@@ -14,11 +14,13 @@ export const Button: React.FC<IButton> = ({
   isLoading,
   onClick,
   icon,
+  type = "button",
 }) => {
   return (
     <button
       onClick={onClick}
       className={`${buttonVariants[variant]} h-14 rounded-lg font-poppins flex justify-center items-center`}
+      type={type}
     >
       {isLoading ? (
         <ThreeDots
