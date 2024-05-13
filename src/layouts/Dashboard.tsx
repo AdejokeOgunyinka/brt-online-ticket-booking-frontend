@@ -12,7 +12,7 @@ export const DashboardLayout: React.FC<IDashboardLayout> = ({
 
   return (
     <div className="w-full min-h-[100vh] flex font-poppins">
-      <div className="h-[100vh] w-1/5 flex flex-col justify-between px-4 bg-white py-10">
+      <div className="hidden md:flex h-[100vh] w-[250px] lg:w-[300px] flex-col justify-between px-4 bg-white py-10">
         <div className="flex flex-col gap-7">
           <div className="flex w-full justify-center">
             <img src={CowryLogo} alt="logo" className="w-20 h-20" />
@@ -46,7 +46,7 @@ export const DashboardLayout: React.FC<IDashboardLayout> = ({
           <p>Log out</p>
         </div>
       </div>
-      <div className="min-h-[100vh] w-4/5 bg-greySection p-10">
+      <div className="min-h-[100vh] w-full md:w-[calc(100%-250px)] bg-greySection p-10">
         <h2 className="text-3xl font-redditSans font-medium">{header}</h2>
         <div>{children}</div>
       </div>
