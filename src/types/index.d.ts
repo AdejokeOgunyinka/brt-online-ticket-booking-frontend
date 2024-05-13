@@ -5,6 +5,7 @@ interface IInput {
   type: string;
   rightIcon?: string;
   label: string;
+  name: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -14,6 +15,7 @@ interface IButton {
   isLoading?: boolean;
   onClick?: () => void;
   icon?: string;
+  type?: any;
 }
 
 interface ITextArea {

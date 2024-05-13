@@ -8,6 +8,7 @@ export const Input: React.FC<IInput> = ({
   type,
   rightIcon,
   onChange,
+  name,
 }) => {
   const [isInFocus, setIsInFocus] = useState(false);
   const onFocus = () => setIsInFocus(true);
@@ -30,6 +31,7 @@ export const Input: React.FC<IInput> = ({
             )}
             <input
               type={type}
+              name={name}
               className={`border-none h-11 outline-none ${type === "time" || type === "date" ? "w-[99%]" : "w-[90%]"}`}
               onFocus={onFocus}
               onBlur={onBlur}
