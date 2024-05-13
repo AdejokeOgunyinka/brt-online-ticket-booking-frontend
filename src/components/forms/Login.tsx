@@ -2,7 +2,6 @@ import { useState } from "react";
 import { FormikProvider, useFormik } from "formik";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "../../context/AuthContext";
 import { Button } from "../CowryButton";
 import { Input } from "../CowryInput";
 import { setToken } from "../../helpers";
@@ -10,7 +9,6 @@ import { API } from "../../constant";
 import { CREATE_ACCOUNT, DASHBOARD } from "../../routes";
 
 export const Login = () => {
-  const { setUser } = useAuthContext();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -37,11 +35,11 @@ export const Login = () => {
         setToken(data.jwt);
 
         // set the user
-        setUser(data.user);
+        localStorage.setItem("user", JSON.stringify(data.user));
 
         toast.success(`Welcome back ${data.user.username}!`);
 
-        navigate(DASHBOARD, { replace: true });
+        navigate(DASHBOARD);
       }
     } catch (error: any) {
       console.error(error);
