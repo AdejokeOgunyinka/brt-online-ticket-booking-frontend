@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import UserAvatar from "../assets/cowry.jpeg";
 import { DashboardMenuBar } from "../components";
 import { IDashboardLayout } from "../types";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { API, BEARER } from "../constant";
+import { getToken } from "../helpers";
+import { toast } from "react-toastify";
 
 export const DashboardLayout: React.FC<IDashboardLayout> = ({
   children,
@@ -9,6 +13,40 @@ export const DashboardLayout: React.FC<IDashboardLayout> = ({
 }) => {
   const [activeMenu, setActiveMenu] = useState("dashboard");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const authToken = getToken();
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const fetchLoggedInUser = async (token: string) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(`${API}/users/me`, {
+        headers: { Authorization: `${BEARER} ${token}` },
+      });
+      const data = await response.json();
+
+      localStorage.setItem("user", JSON.stringify(data));
+    } catch (error: any) {
+      console.error(error);
+      toast.error(error.message, {
+        position: "top-right",
+        closeOnClick: true,
+        theme: "light",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (authToken) {
+      fetchLoggedInUser(authToken);
+    }
+  }, [authToken]);
+
+  const lsUser = localStorage.getItem("user");
+  const user = typeof lsUser === "string" ? JSON.parse(lsUser) : "";
 
   return (
     <div className="w-full min-h-[100vh] flex font-poppins">
@@ -33,9 +71,9 @@ export const DashboardLayout: React.FC<IDashboardLayout> = ({
             fontSize={35}
           />
           {isMobileMenuOpen ? (
-            <div className="absolute right-0 top-0 lg:hidden">
+            <div className="absolute right-0 top-0 md:hidden">
               <Icon
-                className="absolute right-2 top-2  lg:hidden cursor-pointer"
+                className="absolute right-2 top-2  md:hidden cursor-pointer"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 icon={"line-md:menu-to-close-transition"}
                 fontSize={30}
@@ -49,7 +87,13 @@ export const DashboardLayout: React.FC<IDashboardLayout> = ({
           ) : (
             <></>
           )}
-          <div>{children}</div>
+          <div className="w-full min-h-[100vh]">
+            <div className="w-full justify-end items-center gap-2 p-5 hidden lg:flex absolute top-0 right-0 left-0 h-[70px]">
+              <img src={UserAvatar} alt="avatar" className="w-6 h-6" />
+              <p className="font-medium text-lg">{user?.username}</p>
+            </div>
+            {isLoading ? <></> : children}
+          </div>
         </div>
       </div>
     </div>
