@@ -83,7 +83,7 @@ export const Login = () => {
             isLoading={isLoading}
             type="submit"
           />
-          <div className="relative w-full border border-greyBorder border-l-transparent border-r-transparent border-b-transparent flex justify-center items-center">
+          {/* <div className="relative w-full border border-greyBorder border-l-transparent border-r-transparent border-b-transparent flex justify-center items-center">
             <p className="w-20 absolute bg-white -top-3 text-blackText font-medium">
               or
             </p>
@@ -97,7 +97,7 @@ export const Login = () => {
             variant={"secondary"}
             name={"Log in with Facebook"}
             icon="logos:facebook"
-          />
+          /> */}
           <span className="font-teachers">
             Don't yet have an account?{"    "}
             <a href={CREATE_ACCOUNT} className="underline">
