@@ -12,10 +12,11 @@ export const Components = () => {
           label="Password"
           rightIcon="uis:padlock"
           leftIcon="octicon:person-16"
+          name="password"
         />
 
-        <Input type="time" label="Time" leftIcon="subway:time-3" />
-        <Input type="date" label="Date" leftIcon="fontisto:date" />
+        <Input type="time" label="Time" leftIcon="subway:time-3" name="time" />
+        <Input type="date" label="Date" leftIcon="fontisto:date" name="date" />
 
         <Button variant="primary" name="Create Account" isLoading />
 
