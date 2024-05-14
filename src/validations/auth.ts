@@ -26,7 +26,7 @@ export const SignUpValidation = Yup.object({
 });
 
 export const LoginValidation = Yup.object({
-  email: Yup.string().email().required("Email address is required"),
+  identifier: Yup.string().email().required("Email address is required"),
   password: Yup.string()
     .trim()
     .required("Password is required")

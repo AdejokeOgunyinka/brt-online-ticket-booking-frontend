@@ -1,58 +1,16 @@
-import { useState } from "react";
 import { FormikProvider, useFormik } from "formik";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 import { Button } from "../CowryButton";
 import { Input } from "../CowryInput";
-import { setToken } from "../../helpers";
-import { API } from "../../constant";
-import { CREATE_ACCOUNT, DASHBOARD } from "../../routes";
+import { CREATE_ACCOUNT } from "../../routes";
 import { LoginValidation } from "../../validations/auth";
+import { useLogin } from "../../services/api/mutations/auth";
 
 export const Login = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
-
-  const onFinish = async (values: any) => {
-    setIsLoading(true);
-    try {
-      const value = {
-        identifier: values.email,
-        password: values.password,
-      };
-      const response = await fetch(`${API}/auth/local`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(value),
-      });
-
-      const data = await response.json();
-      if (data?.error) {
-        throw data?.error;
-      } else {
-        // set the token
-        setToken(data.jwt);
-
-        // set the user
-        localStorage.setItem("user", JSON.stringify(data.user));
-
-        toast.success(`Welcome back ${data.user.username}!`);
-
-        navigate(DASHBOARD);
-      }
-    } catch (error: any) {
-      console.error(error);
-      toast.error(error?.message ?? "Something went wrong!");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { mutate: onFinish, isLoading } = useLogin();
 
   const LoginFormik = useFormik({
     initialValues: {
-      email: "",
+      identifier: "",
       password: "",
     },
     validationSchema: LoginValidation,
@@ -69,10 +27,10 @@ export const Login = () => {
             type={"email"}
             label={"Email Address"}
             leftIcon="fontisto:email"
-            name="email"
+            name="identifier"
             onChange={LoginFormik.handleChange}
-            error={LoginFormik.errors.email}
-            showError={LoginFormik.touched.email}
+            error={LoginFormik.errors.identifier}
+            showError={LoginFormik.touched.identifier}
             onBlur={LoginFormik.handleBlur}
           />
           <Input
