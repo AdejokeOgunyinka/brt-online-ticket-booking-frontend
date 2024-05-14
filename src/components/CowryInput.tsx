@@ -8,11 +8,19 @@ export const Input: React.FC<IInput> = ({
   type,
   rightIcon,
   onChange,
+  onBlur,
   name,
+  error,
+  value,
+  showError,
 }) => {
   const [isInFocus, setIsInFocus] = useState(false);
   const onFocus = () => setIsInFocus(true);
-  const onBlur = () => setIsInFocus(false);
+
+  const onInputBlur = (e: any) => {
+    setIsInFocus(false);
+    onBlur && onBlur(e);
+  };
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -36,12 +44,13 @@ export const Input: React.FC<IInput> = ({
               name={name}
               className={`border-none h-11 outline-none ${type === "time" || type === "date" ? "w-[99%]" : "w-[90%]"}`}
               onFocus={onFocus}
-              onBlur={onBlur}
+              onBlur={(e) => onInputBlur(e)}
               onChange={(e) => {
                 if (onChange) {
                   onChange(e);
                 }
               }}
+              value={value}
             />
           </div>
           {rightIcon && (
@@ -57,6 +66,9 @@ export const Input: React.FC<IInput> = ({
           )}
         </div>
       </div>
+      {showError && error && (
+        <p className="text-xs text-error text-right">{error}</p>
+      )}
     </div>
   );
 };
