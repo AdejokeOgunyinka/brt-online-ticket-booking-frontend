@@ -76,6 +76,7 @@ export const Login = () => {
             leftIcon="gravity-ui:lock"
             name="password"
             onChange={LoginFormik.handleChange}
+            rightIcon="mdi:hide"
           />
           <Button
             variant={"primary"}

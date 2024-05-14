@@ -14,6 +14,8 @@ export const Input: React.FC<IInput> = ({
   const onFocus = () => setIsInFocus(true);
   const onBlur = () => setIsInFocus(false);
 
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <div className="grid gap-1 w-full font-poppins">
       <label className="font-medium text-lg text-start">{label}</label>
@@ -30,7 +32,7 @@ export const Input: React.FC<IInput> = ({
               </div>
             )}
             <input
-              type={type}
+              type={type === "password" && showPassword ? "text" : type}
               name={name}
               className={`border-none h-11 outline-none ${type === "time" || type === "date" ? "w-[99%]" : "w-[90%]"}`}
               onFocus={onFocus}
@@ -42,7 +44,17 @@ export const Input: React.FC<IInput> = ({
               }}
             />
           </div>
-          {rightIcon && <Icon icon={rightIcon} className="w-5 h-5" />}
+          {rightIcon && (
+            <Icon
+              icon={showPassword ? "mdi:show" : rightIcon}
+              className={`w-5 h-5 ${type === "password" ? "cursor-pointer" : ""}`}
+              onClick={() => {
+                if (type === "password") {
+                  setShowPassword(!showPassword);
+                }
+              }}
+            />
+          )}
         </div>
       </div>
     </div>

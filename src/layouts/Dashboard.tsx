@@ -50,13 +50,15 @@ export const DashboardLayout: React.FC<IDashboardLayout> = ({
 
   return (
     <div className="w-full min-h-[100vh] flex font-poppins">
-      <div className="hidden md:flex h-[100vh]">
-        <DashboardMenuBar
-          activeMenu={activeMenu}
-          setActiveMenu={setActiveMenu}
-        />
+      <div className="hidden fixed md:flex h-[100vh]">
+        <div className="left-0 top-0 bottom-0">
+          <DashboardMenuBar
+            activeMenu={activeMenu}
+            setActiveMenu={setActiveMenu}
+          />
+        </div>
       </div>
-      <div className="min-h-[100vh] w-full md:w-[calc(100%-250px)] bg-greySection p-5 lg:p-10 relative">
+      <div className="min-h-[100vh] w-full md:ml-[290px] bg-greySection p-5 lg:p-10 relative">
         {isMobileMenuOpen ? (
           <div className=" absolute top-0 bottom-0 right-0 left-0 w-full h-[100vh] bg-menuBg"></div>
         ) : (
@@ -65,7 +67,7 @@ export const DashboardLayout: React.FC<IDashboardLayout> = ({
         <h2 className="text-3xl font-redditSans font-medium">{header}</h2>
         <div>
           <Icon
-            className="absolute right-2 top-2  lg:hidden cursor-pointer"
+            className="absolute right-2 top-2  md:hidden cursor-pointer"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             icon={"mingcute:menu-fill"}
             fontSize={35}
@@ -87,7 +89,7 @@ export const DashboardLayout: React.FC<IDashboardLayout> = ({
           ) : (
             <></>
           )}
-          <div className="w-full min-h-[100vh]">
+          <div className="w-full">
             <div className="w-full justify-end items-center gap-2 p-5 hidden lg:flex absolute top-0 right-0 left-0 h-[70px]">
               <img
                 src={UserAvatar}

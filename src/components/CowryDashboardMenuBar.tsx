@@ -18,7 +18,7 @@ export const DashboardMenuBar: React.FC<IDashboardMenuBar> = ({
   };
 
   return (
-    <div className="h-[100vh] w-[300px] lg:w-[290px]  flex flex-col justify-between px-4 bg-white py-10">
+    <div className="h-[100vh] w-[300px] lg:w-[290px] flex flex-col justify-between px-4 bg-white py-10">
       <div className="flex flex-col gap-7">
         <div className="flex w-full justify-center">
           <img src={CowryLogo} alt="logo" className="w-20 h-20" />
