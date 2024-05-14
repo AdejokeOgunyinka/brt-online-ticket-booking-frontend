@@ -4,7 +4,7 @@ interface IInput {
   leftIcon?: string;
   type: string;
   rightIcon?: string;
-  label: string;
+  label?: string;
   name: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
@@ -23,7 +23,7 @@ interface IButton {
 }
 
 interface ITextArea {
-  label: string;
+  label?: string;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
   error?: string;
