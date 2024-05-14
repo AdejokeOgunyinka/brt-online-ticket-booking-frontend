@@ -1,10 +1,10 @@
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { create_account, login } from "../../mutations/auth";
 import { toast } from "react-toastify";
+import { create_account, login } from "../../mutations/auth";
 import { DASHBOARD } from "../../../routes";
 import { IErrorResponse } from "../../../types";
-import { setToken } from "../../../helpers";
+import { instance } from "../../instance";
 
 export const useLogin = () => {
   const navigate = useNavigate();
@@ -15,7 +15,8 @@ export const useLogin = () => {
       const data = res.data;
 
       // set the token
-      setToken(data.jwt);
+      instance.defaults.headers.common["Authorization"] = `Bearer ${data.jwt}`;
+      localStorage.setItem("token", data.jwt);
 
       // set the user
       localStorage.setItem("user", JSON.stringify(data.user));
@@ -41,7 +42,8 @@ export const useCreateAccount = () => {
       const data = res.data;
 
       // set the token
-      setToken(data.jwt);
+      instance.defaults.headers.common["Authorization"] = `Bearer ${data.jwt}`;
+      localStorage.setItem("token", data.jwt);
 
       // set the user
       localStorage.setItem("user", JSON.stringify(data.user));

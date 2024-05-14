@@ -1,4 +1,4 @@
-import instance from "../instance";
+import { instance } from "../instance";
 import { GET_PROFILE } from "../routes/auth";
 
 export const getProfile = async () => {

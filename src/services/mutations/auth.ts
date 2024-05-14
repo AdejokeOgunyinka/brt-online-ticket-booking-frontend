@@ -1,5 +1,5 @@
+import { instance } from "../instance";
 import { ICreateAccount, ILogin } from "../../types";
-import instance from "../instance";
 import { CREATE_ACCOUNT, LOGIN } from "../routes/auth";
 
 export const login = async (payload: ILogin) => {

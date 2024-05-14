@@ -3,7 +3,7 @@ import { LOGIN } from ".";
 import { DashboardLayout } from "../layouts";
 
 const Private = ({ children, header }: { children: any; header: string }) => {
-  const token = localStorage.getItem("authToken");
+  const token = localStorage.getItem("token");
 
   if (!token) {
     return <Navigate to={LOGIN} replace />;
