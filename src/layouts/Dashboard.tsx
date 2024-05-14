@@ -57,7 +57,7 @@ export const DashboardLayout: React.FC<IDashboardLayout> = ({
             <></>
           )}
           <div className="w-full">
-            <div className="w-full justify-end items-center gap-2 p-5 hidden lg:flex absolute top-0 right-0 left-0">
+            <div className="w-full justify-end items-center gap-2 p-5 hidden md:flex absolute top-0 right-0 left-0">
               <img
                 src={UserAvatar}
                 alt="avatar"

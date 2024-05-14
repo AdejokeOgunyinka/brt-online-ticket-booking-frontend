@@ -11,7 +11,7 @@ const Public = ({
   header: string;
   description: string;
 }) => {
-  const token = localStorage.getItem("authToken");
+  const token = localStorage.getItem("token");
 
   if (token) {
     return <Navigate to={DASHBOARD} replace />;
