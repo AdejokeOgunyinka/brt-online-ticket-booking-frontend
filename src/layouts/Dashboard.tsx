@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import UserAvatar from "../assets/cowry.jpeg";
 import { DashboardMenuBar } from "../components";
 import { IDashboardLayout } from "../types";
-import { API, BEARER } from "../constant";
-import { getToken } from "../helpers";
-import { toast } from "react-toastify";
+import { useGetProfile } from "../services/api/queries/auth";
+import { Bars } from "react-loader-spinner";
 
 export const DashboardLayout: React.FC<IDashboardLayout> = ({
   children,
@@ -14,39 +13,7 @@ export const DashboardLayout: React.FC<IDashboardLayout> = ({
   const [activeMenu, setActiveMenu] = useState("dashboard");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const authToken = getToken();
-
-  const [isLoading, setIsLoading] = useState(false);
-
-  const fetchLoggedInUser = async (token: string) => {
-    setIsLoading(true);
-    try {
-      const response = await fetch(`${API}/users/me`, {
-        headers: { Authorization: `${BEARER} ${token}` },
-      });
-      const data = await response.json();
-
-      localStorage.setItem("user", JSON.stringify(data));
-    } catch (error: any) {
-      console.error(error);
-      toast.error(error.message, {
-        position: "top-right",
-        closeOnClick: true,
-        theme: "light",
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (authToken) {
-      fetchLoggedInUser(authToken);
-    }
-  }, [authToken]);
-
-  const lsUser = localStorage.getItem("user");
-  const user = typeof lsUser === "string" ? JSON.parse(lsUser) : "";
+  const { data, isLoading } = useGetProfile();
 
   return (
     <div className="w-full min-h-[100vh] flex font-poppins">
@@ -90,15 +57,36 @@ export const DashboardLayout: React.FC<IDashboardLayout> = ({
             <></>
           )}
           <div className="w-full">
-            <div className="w-full justify-end items-center gap-2 p-5 hidden lg:flex absolute top-0 right-0 left-0 h-[70px]">
+            <div className="w-full justify-end items-center gap-2 p-5 hidden lg:flex absolute top-0 right-0 left-0">
               <img
                 src={UserAvatar}
                 alt="avatar"
                 className="w-8 h-8 rounded-full object-cover border border-blackText"
               />
-              <p className="font-medium text-md font-heebo">{user?.username}</p>
+              <div>
+                <p className="font-medium text-md font-heebo">
+                  {data?.username}
+                </p>
+                <p className="font-medium text-xs font-dmSans">
+                  {data?.brt_card_number}
+                </p>
+              </div>
             </div>
-            {isLoading ? <></> : children}
+            {isLoading ? (
+              <div className="w-full h-[75vh] flex justify-center items-center">
+                <Bars
+                  height="80"
+                  width="80"
+                  color="#001d54"
+                  ariaLabel="bars-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                />
+              </div>
+            ) : (
+              children
+            )}
           </div>
         </div>
       </div>

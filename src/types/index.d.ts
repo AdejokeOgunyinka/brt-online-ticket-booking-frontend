@@ -53,3 +53,47 @@ interface IDashboardMenuBar {
   setActiveMenu: (value: React.SetStateAction<string>) => void;
   activeMenu: string;
 }
+
+interface IInterceptor {
+  component: ReactElement;
+}
+interface ILogin {
+  identifier: string;
+  password: string;
+}
+
+interface ICreateAccount {
+  firstname: string;
+  lastname: string;
+  email: string;
+  brt_card_number: string;
+  password: string;
+  username: string;
+  phone_number: string;
+}
+
+interface IErrorResponse {
+  response: {
+    data: {
+      status: string;
+      code: number;
+      message: string;
+    };
+  };
+}
+
+interface IProfile {
+  id: number;
+  username: string;
+  email: string;
+  provider: string;
+  confirmed: boolean;
+  blocked: boolean;
+  firstname: string;
+  lastname: string;
+  phone_number: string;
+  brt_card_number: string;
+  avatar: string;
+  createdAt: string;
+  updatedAt: string;
+}

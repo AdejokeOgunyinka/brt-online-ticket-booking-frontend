@@ -1,49 +1,12 @@
-import { useState } from "react";
-import { toast } from "react-toastify";
 import { FormikProvider, useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
 import { Button } from "../CowryButton";
 import { Input } from "../CowryInput";
-import { setToken } from "../../helpers";
-import { API } from "../../constant";
-import { DASHBOARD, LOGIN } from "../../routes";
+import { LOGIN } from "../../routes";
 import { SignUpValidation } from "../../validations/auth";
+import { useCreateAccount } from "../../services/api/mutations/auth";
 
 export const SignUp = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
-
-  const onFinish = async (values: any) => {
-    setIsLoading(true);
-    try {
-      const response = await fetch(`${API}/auth/local/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
-
-      const data = await response.json();
-      if (data?.error) {
-        throw data?.error;
-      } else {
-        // set the token
-        setToken(data.jwt);
-
-        // set the user
-        localStorage.setItem("user", JSON.stringify(data.user));
-        toast.success(`Welcome to My Cowry BRT app ${data.user.username}!`);
-
-        navigate(DASHBOARD, { replace: true });
-      }
-    } catch (error: any) {
-      console.error(error);
-      toast.error(error?.message ?? "Something went wrong!");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { mutate: onFinish, isLoading } = useCreateAccount();
 
   const CreateAccountFormik = useFormik({
     initialValues: {
