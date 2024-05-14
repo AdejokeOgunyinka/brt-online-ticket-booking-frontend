@@ -55,7 +55,7 @@ export const Profile = () => {
       {isLoading ? (
         <LoadingPage />
       ) : (
-        <div className="w-full px-3 xl:px-40 py-20">
+        <div className="w-full px-3 xl:px-[20%] 2xl:px-[40%] py-20">
           <FormikProvider value={ProfileFormik}>
             <form onSubmit={ProfileFormik.handleSubmit} className="grid gap-4">
               <div className="w-full border border-buttonBorder">
