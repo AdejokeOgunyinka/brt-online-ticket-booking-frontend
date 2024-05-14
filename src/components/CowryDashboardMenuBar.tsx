@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { DashboardMenu } from "./CowryDashboardMenu";
-import { LOGIN } from "../routes";
+import { BOOKINGS, DASHBOARD, LOGIN, PROFILE } from "../routes";
 import { clearStorage } from "../helpers";
 import CowryLogo from "../assets/cowry.jpeg";
 import { IDashboardMenuBar } from "../types";
@@ -31,21 +31,30 @@ export const DashboardMenuBar: React.FC<IDashboardMenuBar> = ({
             name={"Dashboard"}
             icon={"tabler:layout-dashboard-filled"}
             isActive={activeMenu === "dashboard"}
-            onClick={() => setActiveMenu("dashboard")}
+            onClick={() => {
+              setActiveMenu("dashboard");
+              navigate(DASHBOARD);
+            }}
           />
 
           <DashboardMenu
             name={"Bookings"}
             icon={"streamline:ticket-1-solid"}
             isActive={activeMenu === "bookings"}
-            onClick={() => setActiveMenu("bookings")}
+            onClick={() => {
+              setActiveMenu("bookings");
+              navigate(BOOKINGS);
+            }}
           />
 
           <DashboardMenu
             name={"Profile"}
             icon={"streamline:user-profile-focus-solid"}
             isActive={activeMenu === "profile"}
-            onClick={() => setActiveMenu("profile")}
+            onClick={() => {
+              setActiveMenu("profile");
+              navigate(PROFILE);
+            }}
           />
         </div>
       </div>

@@ -19,7 +19,9 @@ export const TextArea: React.FC<ITextArea> = ({
 
   return (
     <div className="grid gap-1 w-full font-poppins">
-      <label className="font-medium text-lg text-start">{label}</label>
+      {label && (
+        <label className="font-medium text-lg text-start">{label}</label>
+      )}
       <div
         className={`border ${isInFocus ? "ring-1 ring-primaryBorder " : "border-buttonBorder "} p-1 rounded-xl`}
       >

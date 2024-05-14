@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Components, Dashboard } from "./pages";
+import { Bookings, Components, Dashboard, Profile } from "./pages";
 import { SignUp, Login } from "./components";
 import { CREATE_ACCOUNT, LOGIN } from "./routes";
 import Private from "./routes/PrivateRoute";
@@ -9,15 +9,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Private header="Dashboard">
-              <Dashboard />
-            </Private>
-          }
-        />
         <Route path="/components" element={<Components />} />
+
+        {/* Auth Routes */}
+
         <Route
           path={LOGIN}
           element={
@@ -29,6 +24,7 @@ function App() {
             </Public>
           }
         />
+
         <Route
           path={CREATE_ACCOUNT}
           element={
@@ -38,6 +34,35 @@ function App() {
             >
               <SignUp />
             </Public>
+          }
+        />
+
+        {/* Dashboard Routes */}
+
+        <Route
+          path="/"
+          element={
+            <Private header="Dashboard">
+              <Dashboard />
+            </Private>
+          }
+        />
+
+        <Route
+          path="/booking"
+          element={
+            <Private header="Bookings">
+              <Bookings />
+            </Private>
+          }
+        />
+
+        <Route
+          path="/profile"
+          element={
+            <Private header="Profile">
+              <Profile />
+            </Private>
           }
         />
       </Routes>
