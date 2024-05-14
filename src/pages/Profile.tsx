@@ -25,28 +25,43 @@ export const Profile = () => {
       key: "First name",
       value: ProfileFormik.values.firstname,
       name: "firstname",
+      disable: false,
     },
     {
       key: "Last name",
       value: ProfileFormik.values.lastname,
       name: "lastname",
+      disable: false,
     },
     {
       key: "BRT card number",
       value: ProfileFormik.values.brt_card_number,
       name: "brt_card_number",
+      disable: true,
     },
     {
       key: "Phone number",
       value: ProfileFormik.values.phone_number,
       name: "phone_number",
+      disable: true,
     },
-    { key: "Username", value: ProfileFormik.values.username, name: "username" },
-    { key: "Email address", value: ProfileFormik.values.email, name: "email" },
+    {
+      key: "Username",
+      value: ProfileFormik.values.username,
+      name: "username",
+      disable: false,
+    },
+    {
+      key: "Email address",
+      value: ProfileFormik.values.email,
+      name: "email",
+      disable: true,
+    },
     {
       key: "Date joined",
       value: moment(ProfileFormik.values.created_at).format("MMM Do, YYYY"),
       name: "created_at",
+      disable: true,
     },
   ];
 
@@ -59,7 +74,7 @@ export const Profile = () => {
           <FormikProvider value={ProfileFormik}>
             <form onSubmit={ProfileFormik.handleSubmit} className="grid gap-4">
               <div className="w-full border border-buttonBorder">
-                {userData?.map((data: Record<string, string>) => (
+                {userData?.map((data: any) => (
                   <div
                     key={data.key}
                     className="w-full py-5 px-3 lg:px-5 gap-2 flex flex-col items-center lg:flex-row border border-b-buttonBorder border-t-transparent border-l-transparent border-r-transparent"
@@ -71,6 +86,7 @@ export const Profile = () => {
                         name={data.name}
                         value={data.value}
                         onChange={ProfileFormik.handleChange}
+                        disabled={data.disable}
                       />
                     </div>
                   </div>
