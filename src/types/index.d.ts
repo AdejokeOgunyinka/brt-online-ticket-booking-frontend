@@ -81,3 +81,19 @@ interface IErrorResponse {
     };
   };
 }
+
+interface IProfile {
+  id: number;
+  username: string;
+  email: string;
+  provider: string;
+  confirmed: boolean;
+  blocked: boolean;
+  firstname: string;
+  lastname: string;
+  phone_number: string;
+  brt_card_number: string;
+  avatar: string;
+  createdAt: string;
+  updatedAt: string;
+}
