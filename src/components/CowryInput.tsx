@@ -13,6 +13,7 @@ export const Input: React.FC<IInput> = ({
   error,
   value,
   showError,
+  disabled,
 }) => {
   const [isInFocus, setIsInFocus] = useState(false);
   const onFocus = () => setIsInFocus(true);
@@ -53,6 +54,7 @@ export const Input: React.FC<IInput> = ({
                 }
               }}
               value={value}
+              disabled={disabled}
             />
           </div>
           {rightIcon && (

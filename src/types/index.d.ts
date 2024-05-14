@@ -11,6 +11,7 @@ interface IInput {
   error?: string;
   value?: string;
   showError?: boolean;
+  disabled?: boolean;
 }
 
 interface IButton {
