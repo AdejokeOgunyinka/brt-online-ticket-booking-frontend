@@ -111,6 +111,7 @@ export const SignUp = () => {
             leftIcon="gravity-ui:lock"
             onChange={CreateAccountFormik.handleChange}
             name="password"
+            rightIcon="mdi:hide"
           />
           <Button
             variant={"primary"}
