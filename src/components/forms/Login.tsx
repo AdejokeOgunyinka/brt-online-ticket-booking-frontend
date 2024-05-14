@@ -7,6 +7,7 @@ import { Input } from "../CowryInput";
 import { setToken } from "../../helpers";
 import { API } from "../../constant";
 import { CREATE_ACCOUNT, DASHBOARD } from "../../routes";
+import { LoginValidation } from "../../validations/auth";
 
 export const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -54,6 +55,7 @@ export const Login = () => {
       email: "",
       password: "",
     },
+    validationSchema: LoginValidation,
     onSubmit: (values) => {
       onFinish(values);
     },
@@ -69,6 +71,9 @@ export const Login = () => {
             leftIcon="fontisto:email"
             name="email"
             onChange={LoginFormik.handleChange}
+            error={LoginFormik.errors.email}
+            showError={LoginFormik.touched.email}
+            onBlur={LoginFormik.handleBlur}
           />
           <Input
             type={"password"}
@@ -77,6 +82,9 @@ export const Login = () => {
             name="password"
             onChange={LoginFormik.handleChange}
             rightIcon="mdi:hide"
+            error={LoginFormik.errors.password}
+            showError={LoginFormik.touched.password}
+            onBlur={LoginFormik.handleBlur}
           />
           <Button
             variant={"primary"}

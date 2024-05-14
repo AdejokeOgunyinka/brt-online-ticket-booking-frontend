@@ -7,6 +7,7 @@ import { Input } from "../CowryInput";
 import { setToken } from "../../helpers";
 import { API } from "../../constant";
 import { DASHBOARD, LOGIN } from "../../routes";
+import { SignUpValidation } from "../../validations/auth";
 
 export const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -51,7 +52,10 @@ export const SignUp = () => {
       email: "",
       brt_card_number: "",
       password: "",
+      username: "",
+      phone_number: "",
     },
+    validationSchema: SignUpValidation,
     onSubmit: (values) => {
       onFinish(values);
     },
@@ -68,6 +72,9 @@ export const SignUp = () => {
               leftIcon="octicon:person-24"
               onChange={CreateAccountFormik.handleChange}
               name="firstname"
+              error={CreateAccountFormik.errors.firstname}
+              showError={CreateAccountFormik.touched.firstname}
+              onBlur={CreateAccountFormik.handleBlur}
             />
             <Input
               type={"text"}
@@ -75,6 +82,9 @@ export const SignUp = () => {
               leftIcon="octicon:person-24"
               onChange={CreateAccountFormik.handleChange}
               name="lastname"
+              error={CreateAccountFormik.errors.lastname}
+              showError={CreateAccountFormik.touched.lastname}
+              onBlur={CreateAccountFormik.handleBlur}
             />
           </div>
           <Input
@@ -83,6 +93,9 @@ export const SignUp = () => {
             leftIcon="octicon:person-24"
             onChange={CreateAccountFormik.handleChange}
             name="username"
+            error={CreateAccountFormik.errors.username}
+            showError={CreateAccountFormik.touched.username}
+            onBlur={CreateAccountFormik.handleBlur}
           />
           <Input
             type={"email"}
@@ -90,6 +103,9 @@ export const SignUp = () => {
             leftIcon="fontisto:email"
             onChange={CreateAccountFormik.handleChange}
             name="email"
+            error={CreateAccountFormik.errors.email}
+            showError={CreateAccountFormik.touched.email}
+            onBlur={CreateAccountFormik.handleBlur}
           />
           <Input
             type={"text"}
@@ -97,6 +113,9 @@ export const SignUp = () => {
             leftIcon="octicon:person-24"
             onChange={CreateAccountFormik.handleChange}
             name="brt_card_number"
+            error={CreateAccountFormik.errors.brt_card_number}
+            showError={CreateAccountFormik.touched.brt_card_number}
+            onBlur={CreateAccountFormik.handleBlur}
           />
           <Input
             type={"text"}
@@ -104,6 +123,9 @@ export const SignUp = () => {
             leftIcon="octicon:person-24"
             onChange={CreateAccountFormik.handleChange}
             name="phone_number"
+            error={CreateAccountFormik.errors.phone_number}
+            showError={CreateAccountFormik.touched.phone_number}
+            onBlur={CreateAccountFormik.handleBlur}
           />
           <Input
             type={"password"}
@@ -112,6 +134,9 @@ export const SignUp = () => {
             onChange={CreateAccountFormik.handleChange}
             name="password"
             rightIcon="mdi:hide"
+            error={CreateAccountFormik.errors.password}
+            showError={CreateAccountFormik.touched.password}
+            onBlur={CreateAccountFormik.handleBlur}
           />
           <Button
             variant={"primary"}
