@@ -70,6 +70,7 @@ export const Profile = () => {
                         type={data.key === "Email address" ? "email" : "text"}
                         name={data.name}
                         value={data.value}
+                        onChange={ProfileFormik.handleChange}
                       />
                     </div>
                   </div>
